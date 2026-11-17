@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<!-- HTML5 document: the language declaration helps screen readers pronounce the content correctly. -->
+<html lang="en">
+<head>
+    <!-- Metadata: UTF-8 supports special characters, viewport enables responsive sizing, and the title identifies the page in browser tabs. -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services | CodePolisher</title>
+    <!-- Shared stylesheet: one file keeps layout and brand consistent across all five pages. Google Fonts are optional; CSS provides local fallbacks. -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Skip link: keyboard users can bypass repeated navigation and reach the main content directly. -->
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+<!-- Shared sticky header: keeps the brand and navigation available while scrolling. The same links on every page make the site predictable. -->
+<header class="site-header">
+    <!-- Placeholder logo: the circle and text identify the brand; linking it home gives visitors a familiar way back. -->
+    <a class="brand" href="index.html" aria-label="CodePolisher home">
+        <svg width="204" height="42" viewBox="0 0 204 42" aria-hidden="true" focusable="false">
+            <circle cx="21" cy="21" r="19" fill="#0b3d91"/>
+            <text x="21" y="27" text-anchor="middle" fill="white" font-size="17" font-weight="700">CP</text>
+            <text x="49" y="27" fill="#0b3d91" font-size="20" font-weight="700">CodePolisher</text>
+        </svg>
+    </a>
+    <!-- Mobile menu control: aria-expanded tells assistive technology whether navigation is open. JavaScript toggles the menu on small screens. -->
+    <button class="menu-toggle" type="button" aria-controls="site-nav" aria-expanded="false" aria-label="Toggle navigation">☰</button>
+    <!-- Shared navigation: relative filenames keep all five pages connected, including when the folder is opened locally. -->
+    <nav id="site-nav" aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="services.html">Services</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+</header>
+<!-- Placeholder main: reserves this page for a later capstone milestone. A meaningful heading confirms that the navigation link works. -->
+<main id="main-content" class="placeholder">
+    <h1>Services</h1>
+    <p>This page will be completed in a later capstone assignment.</p>
+</main>
+<!-- Shared footer: repeats ownership and contact information so visitors can find it from any page. The email is a clearly marked example for the class project. -->
+<footer class="site-footer">
+    <p>© 2026 ImPerial TeK Solutions · CodePolisher</p>
+    <p>Contact (demo): <a href="mailto:hello@example.com">hello@example.com</a></p>
+</footer>
+    <!-- Shared script: loaded after the HTML so DOM elements exist before JavaScript accesses them. -->
+    <script src="js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,122 @@
+/* Brand tokens: these five proposal colors and two font stacks are shared across pages. Variables make future changes consistent instead of requiring repeated edits. */
+:root {
+    --background: #fafbfc;
+    --surface: #ffffff;
+    --primary: #0b3d91;
+    --accent: #f0c419;
+    --text: #1f2933;
+    --heading-font: "Space Grotesk", Arial, sans-serif;
+    --body-font: Inter, Arial, sans-serif;
+}
+/* Sizing reset: border-box includes padding in widths, preventing cards and controls from unexpectedly overflowing narrow screens. */
+*, *::before, *::after { box-sizing: border-box; }
+/* Page foundation: the vertical flex layout keeps short placeholder pages tall enough for the footer to sit at the bottom. Clamp scales the body text smoothly. */
+body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: var(--background);
+    color: var(--text);
+    font-family: var(--body-font);
+    font-size: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+    line-height: 1.65;
+}
+/* Main landmark: flex growth fills leftover vertical space, keeping shared footers in a consistent position. */
+main { flex: 1; min-width: 0; }
+/* Type hierarchy: heading and paragraph clamps limit sizes at both extremes while viewport units provide fluid intermediate sizing. */
+h1, h2, h3 { font-family: var(--heading-font); line-height: 1.12; margin: 0 0 0.65em; color: var(--primary); }
+h1 { font-size: clamp(2.5rem, 1.65rem + 4vw, 5.25rem); }
+h2 { font-size: clamp(1.85rem, 1.4rem + 2vw, 3rem); }
+h3 { font-size: clamp(1.25rem, 1.15rem + 0.5vw, 1.65rem); }
+p { font-size: clamp(1rem, 0.95rem + 0.25vw, 1.125rem); margin: 0 0 1rem; }
+/* Responsive media: intrinsic aspect ratio is preserved, and max-width stops illustrations from spilling outside their containers. */
+img { max-width: 100%; height: auto; }
+/* Links and focus: consistent brand links and a visible focus ring make keyboard interaction clear. */
+a { color: var(--primary); }
+a:focus-visible, button:focus-visible { outline: 3px solid var(--primary); outline-offset: 4px; }
+/* Skip link: hidden offscreen until focused so keyboard users can jump directly to page content without adding visual clutter. */
+.skip-link { position: absolute; top: -100px; left: 1rem; z-index: 20; padding: 0.6rem 1rem; background: var(--surface); }
+.skip-link:focus { top: 0.5rem; }
+/* Sticky site header: flex puts the logo and nav in one row; space-between pushes them to opposite ends, while sticky keeps navigation visible during scrolling. */
+.site-header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.75rem clamp(1rem, 4vw, 4rem);
+    background: var(--surface);
+    border-bottom: 1px solid rgba(11,61,145,0.16);
+}
+/* Logo: inline-flex removes baseline gaps and keeps the temporary SVG compact so the navigation has room. */
+.brand { display: inline-flex; max-width: 100%; text-decoration: none; flex-shrink: 0; }
+.brand svg { display: block; max-width: 100%; font-family: var(--heading-font); }
+/* Desktop nav: flex arranges all five links horizontally; spacing and padding give visitors easy click targets. */
+.site-header nav { display: flex; align-items: center; gap: clamp(0.3rem, 1.6vw, 1.6rem); }
+.site-header nav a { text-decoration: none; font-weight: 600; padding: 0.45rem 0.25rem; }
+.site-header nav a:hover, .site-header nav a[aria-current="page"] { text-decoration: underline; text-decoration-color: var(--accent); text-decoration-thickness: 3px; text-underline-offset: 0.4em; }
+/* Menu toggle: initially hidden, then shown by the mobile media query once JavaScript is available; this prevents inaccessible menus without JavaScript. */
+.menu-toggle { display: none; border: 1px solid var(--primary); border-radius: 0.4rem; background: var(--surface); color: var(--primary); font-size: 1.5rem; min-width: 44px; min-height: 44px; cursor: pointer; }
+/* Hero: the required 80vh minimum and column flex centering place the headline, CTA and artwork in a prominent first screen; padding leaves breathing room. */
+.hero {
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: clamp(2rem, 5vw, 5rem) 1rem;
+    background: linear-gradient(145deg, var(--surface), var(--background));
+}
+/* Hero headline: the second line receives a distinct brand treatment, while a subtle accent underline highlights the central promise. */
+.hero h1 { max-width: 18ch; margin: 0.5rem 0 1rem; }
+.hero h1 span { text-decoration: underline; text-decoration-color: var(--accent); text-decoration-thickness: 0.09em; text-underline-offset: 0.12em; }
+/* Eyebrow: small uppercase text introduces a section without competing with the heading. Letter spacing distinguishes it from body copy. */
+.eyebrow { color: var(--primary); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.13em; }
+/* Hero copy: a readable line length prevents the introduction from stretching too far on large screens. */
+.hero-copy { max-width: 54ch; margin-bottom: 1.7rem; }
+/* CTA links: inline flex makes an anchor look like a button while preserving native link navigation; ample padding makes it easy to tap. */
+.button { display: inline-flex; justify-content: center; align-items: center; gap: 0.7rem; padding: 0.85rem 1.35rem; border-radius: 0.5rem; background: var(--primary); color: var(--surface); font-weight: 700; text-decoration: none; min-height: 48px; text-align: center; }
+.button:hover { background: var(--text); }
+/* Hero illustration: a bounded local image supports the topic, while a fluid width lets it shrink on phones. */
+.hero-image { width: min(100%, 680px); margin-top: 2rem; }
+/* Features section: centered max-width and generous padding create consistent page margins and a clear break from the hero. */
+.features { max-width: 1200px; margin: 0 auto; padding: clamp(2.5rem, 6vw, 5rem) clamp(1rem, 4vw, 3rem); }
+/* Section introduction: centered text and a short readable line help users understand the cards before scanning them. */
+.section-intro { text-align: center; margin: 0 auto 2rem; max-width: 60ch; }
+.section-intro h2 { margin-top: 0.55rem; }
+/* Feature grid: three equal columns on desktop and one column on mobile. minmax(0, 1fr) allows cards to shrink rather than causing overflow. */
+.feature-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.15rem; }
+/* Feature cards: white surfaces, subtle borders and padding group each benefit into its own readable unit. */
+.feature-card { background: var(--surface); border: 1px solid rgba(11,61,145,0.18); border-radius: 0.8rem; padding: clamp(1.2rem, 2.5vw, 2rem); box-shadow: 0 5px 18px rgba(31,41,51,0.05); }
+.feature-card p { margin-bottom: 0; }
+/* Feature icons: compact blue-on-yellow badges establish visual consistency without depending on color alone for meaning. */
+.feature-icon { display: inline-flex; justify-content: center; align-items: center; min-width: 48px; height: 48px; padding: 0.4rem; margin-bottom: 1.2rem; background: var(--accent); color: var(--text); font-weight: 700; font-size: 1.25rem; border-radius: 0.5rem; }
+/* Repeat CTA: contrasting blue background distinguishes the next step; flexible wrapping prevents cramped text and buttons. */
+.repeat-cta { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1.5rem; background: var(--primary); color: var(--surface); padding: clamp(2rem, 5vw, 4rem) clamp(1rem, 7vw, 6rem); }
+.repeat-cta h2 { color: var(--surface); margin-bottom: 0.4rem; }
+.repeat-cta p { margin-bottom: 0; }
+/* Accent CTA: dark text on yellow is readable; a white focus ring stays visible against the blue section. */
+.button-accent { background: var(--accent); color: var(--text); }
+.button-accent:hover { background: var(--surface); }
+.repeat-cta a:focus-visible { outline-color: var(--surface); }
+/* Footer: shared flex layout distributes copyright and contact information, wrapping when there is not enough room. */
+.site-footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.5rem 1rem; background: var(--surface); padding: 1.5rem clamp(1rem, 4vw, 4rem); border-top: 1px solid rgba(11,61,145,0.16); }
+.site-footer p { margin: 0; font-size: 0.9rem; overflow-wrap: anywhere; }
+/* Stub pages: centered placeholder headings confirm each destination works without prematurely building future assignments. */
+.placeholder { padding: 4rem 1rem; text-align: center; }
+/* Mobile breakpoint: below 768px the header can wrap, the enhanced hamburger collapses the nav and feature cards stack vertically. This keeps links and content inside the viewport. */
+@media (max-width: 767px) {
+    .site-header { flex-wrap: wrap; }
+    .site-header nav { width: 100%; flex-direction: column; align-items: stretch; gap: 0; }
+    .site-header nav a { padding: 0.65rem 0; }
+    .js-enabled .menu-toggle { display: inline-block; }
+    .js-enabled .site-header nav { display: none; }
+    .js-enabled .site-header nav.is-open { display: flex; }
+    .feature-grid { grid-template-columns: 1fr; }
+    .repeat-cta { align-items: flex-start; flex-direction: column; }
+    .site-footer { flex-direction: column; }
+}
